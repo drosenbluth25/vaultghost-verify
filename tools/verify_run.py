@@ -7,7 +7,7 @@ def canonicalize(data):
     """Returns a deterministic JSON string representation."""
     return json.dumps(data, sort_keys=True, separators=(',', ':'))
 
-def verify_manifest(manifest_path):
+def verify_manifest(manifest_path, expected_output_path=None):
     try:
         with open(manifest_path, 'r') as f:
             manifest = json.load(f)
@@ -19,8 +19,6 @@ def verify_manifest(manifest_path):
         # 1. Validate Hash Chain
         current_hash = None
         for i, step in enumerate(steps):
-            # In a real scenario, we might re-calculate output_hash from input_hash + action
-            # For this minimal version, we verify the chain link
             if i > 0:
                 if step["input_hash"] != steps[i-1]["output_hash"]:
                     print(f"Verification Failed: Hash chain broken at step {step['id']}")
@@ -33,24 +31,37 @@ def verify_manifest(manifest_path):
             print(f"Verification Failed: Receipt mismatch. Expected {expected_receipt}, got {final_receipt}")
             return False
             
-        # 3. Print Deterministic Output
-        print("VaultGhost Verification Report")
-        print("==============================")
-        print(f"Run ID: {run_id}")
-        print("Status: VERIFIED")
-        print(f"Steps Validated: {len(steps)}")
-        print("Hash Chain: OK")
-        print("Receipt Match: OK")
-        print(f"Final Hash: {current_hash}")
+        # 3. Generate Deterministic Output
+        output_lines = [
+            "VaultGhost Verification Report",
+            "==============================",
+            f"Run ID: {run_id}",
+            "Status: VERIFIED",
+            f"Steps Validated: {len(steps)}",
+            "Hash Chain: OK",
+            "Receipt Match: OK",
+            f"Final Hash: {current_hash}"
+        ]
+        actual_output = "\n".join(output_lines)
         
+        # 4. Byte-for-byte enforcement if expected output is provided
+        if expected_output_path:
+            with open(expected_output_path, 'r') as f:
+                expected_output = f.read().strip()
+            if actual_output.strip() != expected_output:
+                print("Verification Failed: Output mismatch against EXPECTED_OUTPUT.txt")
+                return False
+
+        print(actual_output)
         return True
     except Exception as e:
         print(f"Verification Error: {str(e)}")
         return False
 
 if __name__ == "__main__":
-    manifest_file = Path(__file__).parent.parent / "data" / "run_manifest.json"
-    success = verify_manifest(manifest_file)
-    if not success:
-        sys.exit(1)
-    sys.exit(0)
+    root_dir = Path(__file__).parent.parent
+    manifest_file = root_dir / "data" / "run_manifest.json"
+    expected_file = root_dir / "EXPECTED_OUTPUT.txt"
+    
+    success = verify_manifest(manifest_file, expected_file)
+    sys.exit(0 if success else 1)
