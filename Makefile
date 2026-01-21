@@ -5,7 +5,7 @@ PYTHON := $(VENV_PATH)/bin/python
 
 install:
 	@echo "--- Installing dependencies ---"
-	poetry install --with dev
+	poetry install --with dev --no-root
 
 verify: install
 	@echo "--- Running VaultGhost Verification ---"

@@ -31,14 +31,21 @@ class TestVaultGhostVerification(unittest.TestCase):
         
         try:
             # Tamper with the manifest
-            tampered_content = original_content.replace("6b86b273", "deadbeef")
+            # Replace ONLY the output_hash in one step to break the chain or receipt match
+            # The original content has "6b86b273" in both the last step output and the final receipt.
+            # By replacing only one occurrence, we break the consistency.
+            tampered_content = original_content.replace("6b86b273", "deadbeef", 1)
             manifest_path.write_text(tampered_content)
             
+            # Use the same python as the one running the test (which should be the poetry venv)
             result = subprocess.run(
                 [sys.executable, str(self.verify_script)],
                 capture_output=True,
                 text=True
             )
+            
+            print(f"DEBUG: returncode={result.returncode}")
+            print(f"DEBUG: stdout={result.stdout}")
             
             self.assertNotEqual(result.returncode, 0)
             self.assertIn("Verification Failed", result.stdout)

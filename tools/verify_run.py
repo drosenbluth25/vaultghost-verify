@@ -51,4 +51,6 @@ def verify_manifest(manifest_path):
 if __name__ == "__main__":
     manifest_file = Path(__file__).parent.parent / "data" / "run_manifest.json"
     success = verify_manifest(manifest_file)
-    sys.exit(0 if success else 1)
+    if not success:
+        sys.exit(1)
+    sys.exit(0)
