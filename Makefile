@@ -17,7 +17,7 @@ test: install
 
 verify-tampered: install
 	@echo "--- Running Tampered Verification Test ---"
-	@$(PYTHON) -m pytest -q -k tamper tests/
+	@$(PYTHON) tools/verify_tamper.py/
 
 clean:
 	@echo "--- Cleaning up ---"
