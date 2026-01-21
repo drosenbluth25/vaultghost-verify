@@ -12,7 +12,7 @@ The primary purpose of this repository is to serve as a **reproducible test vect
 2.  **Pinned Dependencies:** Dependencies are managed and pinned using `pyproject.toml` and `poetry.lock`.
 3.  **One Command Verification:** The entire verification process is executed via `make verify`.
 4.  **No Hidden Network Calls:** The verification script is a pure Python script with no external dependencies beyond the standard library and the pinned dependencies.
-5.  **Expected Output:** The script's output is checked against `EXPECTED_OUTPUT.txt` and exits with code `0` on success.
+5.  **Expected Output & Command-Level Enforcement:** The script's output is checked against `EXPECTED_OUTPUT.txt`. **Crucially, `make verify` will now return a non-zero exit code on *any* verification failure or output mismatch**, meeting the strictest audit standard.
 
 ## Setup Steps
 
@@ -59,9 +59,17 @@ Receipt Match: OK
 Final Hash: 6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b
 ```
 
-If the output does not match this exactly, the `make verify` command will still succeed (as the script exits 0), but the CI/test suite (`make test`) will fail, as it checks for byte-for-byte equivalence.
+### Audit Commands
+
+For audit purposes, the following commands are available:
+
+| Command | Purpose | Expected Exit Code |
+| :--- | :--- | :--- |
+| `make verify` | Run full verification against `EXPECTED_OUTPUT.txt`. | `0` (Success) |
+| `make verify-tampered` | Run the test case that intentionally tampers with the manifest to prove failure. | `1` (Failure) |
+| `make test` | Run the full test suite (`pytest -q`). | `0` (Success) |
 
 ## Acceptance Criteria
 
--   **Fresh clone + install + one command => identical output:** Ensured by pinned dependencies and the `test_deterministic_output` test case.
--   **Artifact modification failure:** Ensured by the `test_failure_on_tamper` test case, which verifies that a tampered manifest results in a non-zero exit code and a clear discrepancy message.
+-   **Fresh clone + install + one command => identical output:** Ensured by pinned dependencies and the `make verify` command.
+-   **Artifact modification failure:** **Now enforced by `make verify` itself** (non-zero exit code on mismatch) and confirmed by the `make verify-tampered` command.
