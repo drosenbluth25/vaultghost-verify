@@ -1,0 +1,19 @@
+{
+  "run_id": "vg-run-2026-01-21-001",
+  "timestamp": "2026-01-21T12:00:00Z",
+  "steps": [
+    {
+      "id": 1,
+      "action": "initialize",
+      "input_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_hash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "id": 2,
+      "action": "process",
+      "input_hash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "output_hash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    }
+  ],
+  "final_receipt": "vaultghost-receipt-v1-6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+}

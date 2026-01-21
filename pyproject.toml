@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "vaultghost-verify"
+version = "0.1.0"
+description = "Minimal, reproducible VaultGhost verification pipeline."
+authors = ["Manus AI <ai@manus.im>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.13"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "7.4.4"
+poetry = "1.7.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
