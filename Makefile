@@ -13,8 +13,12 @@ verify: install
 
 test: install
 	@echo "--- Running Test Suite ---"
-	@$(PYTHON) -m pytest tests/
+	@$(PYTHON) -m pytest -q tests/
+
+verify-tampered: install
+	@echo "--- Running Tampered Verification Test ---"
+	@$(PYTHON) -m pytest -q -k tamper tests/
 
 clean:
 	@echo "--- Cleaning up ---"
-	@rm -rf .venv .pytest_cache __pycache__
+	@rm -rf .venv .pytest_cache __pycache__ .github/workflows/__pycache__ tests/__pycache__ tools/__pycache__
