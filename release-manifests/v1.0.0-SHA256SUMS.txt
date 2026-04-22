@@ -1,0 +1,19 @@
+# SHA-256 Git Object Hashes — drosenbluth25/vaultghost-verify v1.0.0
+# Release commit: beca25358e2c178a2503110ed5d8ec38f3046c70
+# Generated: 2026-04-22T11:12:46Z
+# Note: these are Git blob SHA-1 object IDs, not file-level SHA-256.
+# For file-level SHA-256, clone the repo and run: sha256sum $(git ls-files)
+
+82e1c3333cfdf031a8640382e014dc6e7c200efb .github/CODEOWNERS
+d529c2d99e2aaf5f24e33f200339aeafb26eac65 CONTRIBUTING.md
+94d10c4260746757b686af4c5d1882e12207103b EXPECTED_OUTPUT.txt
+bfcfe9ceb055ccfe06825d6b85f0935aa0f197bd Makefile
+5e8d939de90148c66508fa386403546011a60c25 README.md
+2aa5b2bfea7f954a2e3236b33601839a48fe79ce SECURITY.md
+04cd1bd9493ab4f8ec84a363fdd1893d74ef6a0b data/run_manifest.json
+770fa2279ec4a9d834b97ba7f7fd11e725450e3e poetry.lock
+cb9c298ce0324e7b637de1af7b40d0169b8bad6a pyproject.toml
+7647c0b5b149844f8e65ed453aef4e36279a77ba tests/__pycache__/test_verification.cpython-311-pytest-7.4.4.pyc
+4d6885dcca8f8e466379dee8e4a2c01b2e29267c tests/test_verification.py
+999368eef538979d2bafa5d65fca6ae5145687c1 tools/verify_run.py
+154a67b1318f45d2f71f1f4794157519a177dd09 tools/verify_tamper.py
