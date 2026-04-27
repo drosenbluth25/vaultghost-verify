@@ -73,3 +73,26 @@ For audit purposes, the following commands are available:
 
 -   **Fresh clone + install + one command => identical output:** Ensured by pinned dependencies and the `make verify` command.
 -   **Artifact modification failure:** **Now enforced by `make verify` itself** (non-zero exit code on mismatch) and confirmed by the `make verify-tampered` command.
+
+## Evidence Boundary
+
+VaultGhost verifies records within a captured boundary. It can verify hashes,
+signatures, schemas, timestamps, declared metadata, and replayable artifacts.
+It does not claim visibility into hidden model weights, provider-side logs,
+undisclosed system prompts, or private infrastructure.
+
+A valid signature is not trusted identity. Internal consistency is not
+provenance.
+
+## License Status
+
+No `LICENSE` file is currently present in this repository. License terms for
+the repository contents have not been confirmed by the owner here, and a
+license decision/confirmation is required before relying on reuse rights.
+
+`pyproject.toml` declares `license = "MIT"` as Python package metadata for the
+`vaultghost-verify` distribution. That declaration is package metadata only;
+it is not a substitute for a repository-level `LICENSE` file and should not be
+treated as a license grant over the repository as a whole. Until a `LICENSE`
+file is added by the repository owner, downstream users should not assume any
+particular open-source license applies.

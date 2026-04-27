@@ -35,7 +35,12 @@ Markdown and HTML source files are canonical. PDFs are derived snapshots only.
 
 VaultGhost and all associated works are authored by Daniel Rosenbluth.
 A U.S. provisional patent was filed February 25, 2026.
-The VaultGhost Protocol is released under Apache-2.0; see `LICENSE` for terms.
+
+No `LICENSE` file is currently present in this repository. License terms for
+the contents of this repository have not been confirmed by the owner here,
+and a license decision/confirmation is required before relying on reuse
+rights. Any prior reference to `LICENSE` in this document does not imply that
+such a file exists in this repository.
 
 Chain-break events in the provenance ledger are documented explicitly in
 `vaultghost-chain-ledger/PROVENANCE.md` rather than suppressed.
