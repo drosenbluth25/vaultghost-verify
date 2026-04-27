@@ -36,5 +36,16 @@ at [github.com/settings/keys](https://github.com/settings/keys).
 
 ## License
 
-By contributing, you agree that your contributions are licensed under
-the same terms as this repository. See `LICENSE`.
+No `LICENSE` file is currently present at the root of this repository.
+The repository's license terms have not been confirmed by the owner in this
+repository, and a license decision/confirmation is required before anyone
+relies on reuse, redistribution, or modification rights.
+
+`pyproject.toml` declares `license = "MIT"` as Python package metadata. That
+metadata describes the packaged distribution's declared license field; it is
+not a substitute for a repository-level `LICENSE` file and should not be read
+as a grant of rights over the repository contents as a whole.
+
+Until a `LICENSE` file is added by the repository owner, contributors should
+not assume that any particular open-source license applies. Open an issue to
+request clarification before contributing if license terms matter to you.
